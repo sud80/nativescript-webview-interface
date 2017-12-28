@@ -75,6 +75,10 @@
      * Executes event/command/jsFunction in webView.
      */
     WebViewInterface.prototype._executeJS = function(strJSFunction){
+      if (!this.webView.android)
+      {
+         return;
+      }
       if (platformModule.device.sdkVersion >= 19) {
         this.webView.android.evaluateJavascript(strJSFunction, null);
       }
