@@ -14,7 +14,9 @@
         onWebViewEvent: function(webViewId, eventName, jsonData){
             // getting webviewInterface object by webViewId from static map.
             var oWebViewInterface = getWebViewIntefaceObjByWebViewId(webViewId);
-            oWebViewInterface._onWebViewEvent(eventName, jsonData);
+            if(oWebViewInterface) {
+              oWebViewInterface._onWebViewEvent(eventName, jsonData);
+            }
         }
     });
     
@@ -73,6 +75,10 @@
      * Executes event/command/jsFunction in webView.
      */
     WebViewInterface.prototype._executeJS = function(strJSFunction){
+      if (!this.webView.android)
+      {
+         return;
+      }
       if (platformModule.device.sdkVersion >= 19) {
         this.webView.android.evaluateJavascript(strJSFunction, null);
       }
