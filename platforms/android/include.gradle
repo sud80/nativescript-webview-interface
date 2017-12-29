@@ -1,0 +1,17 @@
+android {
+    productFlavors {
+        "nativescript-webview-interface" {
+            dimension "nativescript-webview-interface"
+        }
+    }
+}
+
+repositories {
+   flatDir {
+       dirs '.'
+   }
+}
+
+dependencies {
+   compile name: 'WebViewInterface'
+}
